@@ -23,12 +23,13 @@
         base-package="org.zbo.done.web"/>
 
     <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+    <mvc:annotation-driven />
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files
         (see staticFiles.jsp for more details) -->
-    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
-    <!--<mvc:resources mapping="/vendors/**" location="/vendors/"/>-->
-    <!--<mvc:resources mapping="/sb2/**" location="/sb2/"/>-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/vendors/**" location="/vendors/"/>
+    <mvc:resources mapping="/sb2/**" location="/sb2/"/>
 
     <mvc:view-controller path="/" view-name="welcome"/>
 

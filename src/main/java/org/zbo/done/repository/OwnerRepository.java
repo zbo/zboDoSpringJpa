@@ -7,4 +7,6 @@ import org.zbo.done.model.Owner;
  */
 public interface OwnerRepository {
     Owner findById(int id);
+
+    void save(Owner owner);
 }

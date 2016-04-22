@@ -22,4 +22,13 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         query.setParameter("id", id);
         return (Owner) query.getSingleResult();
     }
+
+    @Override
+    public void save(Owner owner) {
+        if (owner.getId() == null) {
+            this.em.persist(owner);
+        } else {
+            this.em.merge(owner);
+        }
+    }
 }

@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by zbo on 4/21/16.
  */
 
-public class OwnerControllerTest extends AbstractTestBase {
+public class OwnerControllerTests extends AbstractTestBase {
 
     private static final int TEST_OWNER_ID = 1;
 
@@ -33,7 +33,7 @@ public class OwnerControllerTest extends AbstractTestBase {
     }
 
     @Test
-    public void showOwner() throws Exception {
+    public void showOwnerTest() throws Exception {
         mockMvc.perform(get("/owners/{ownerId}", TEST_OWNER_ID))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("owner", hasProperty("lastName", is("Franklin"))))

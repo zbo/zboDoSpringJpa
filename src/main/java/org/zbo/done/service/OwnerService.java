@@ -11,4 +11,6 @@ public interface OwnerService {
 
     Owner findOwnerById(int id) throws DataAccessException;
 
+    void saveOwner(Owner owner) throws DataAccessException;
+
 }
