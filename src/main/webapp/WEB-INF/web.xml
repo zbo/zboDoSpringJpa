@@ -9,10 +9,10 @@
     <description>zbo sample application</description>
 
     <!-- When using Spring jpa, use the following: -->
-    <context-param>
-        <param-name>spring.profiles.active</param-name>
-        <param-value>jpa</param-value>
-    </context-param>
+    <!--<context-param>-->
+        <!--<param-name>spring.profiles.active</param-name>-->
+        <!--<param-value>jpa</param-value>-->
+    <!--</context-param>-->
     <!--
 		- Location of the XML file that defines the root application context.
 		- Applied by ContextLoaderListener.

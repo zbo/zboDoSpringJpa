@@ -20,11 +20,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.zbo.done.model.Owner;
 import org.zbo.done.service.OwnerService;
+import org.zbo.done.util.JsonUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @author Juergen Hoeller
@@ -60,10 +63,10 @@ public class OwnerController {
 
 
     @RequestMapping(value = "/owners/{ownerId}", method = RequestMethod.GET)
-    public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
-        ModelAndView mav = new ModelAndView("owners/ownerDetails");
-        mav.addObject(this.ownerService.findOwnerById(ownerId));
-        return mav;
+    public void showOwner(@PathVariable("ownerId") int ownerId) throws IOException {
+        Owner owner = this.ownerService.findOwnerById(ownerId);
+        this.response.setContentType("application/json;charset=UTF-8");
+        this.response.getWriter().write((JsonUtil.toJson(owner)));
     }
 //
 //    @RequestMapping("/owners.json")

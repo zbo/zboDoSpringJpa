@@ -19,8 +19,19 @@
             base-package="org.zbo.done.repository"/>
     <context:component-scan
             base-package="org.zbo.done.service"/>
+    <context:component-scan
+            base-package="org.zbo.done.util"/>
 
     <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/>
+
+    <bean id="dbInitUtil" class="org.zbo.done.util.DBInitUtil">
+        <property name="initLocation">
+            <value>${jdbc.initLocation}</value>
+        </property>
+        <property name="dataLocation">
+            <value>${jdbc.dataLocation}</value>
+        </property>
+    </bean>
 
     <!-- enables scanning for @Transactional annotations -->
     <tx:annotation-driven/>
