@@ -37,9 +37,4 @@ public class PageController {
     public String init_index(Map<String, Object> model) {
         return "bootstrap/pages/index";
     }
-
-    @RequestMapping(value = "bootstrap/owners", method = RequestMethod.GET)
-    public String get_owner(Map<String, Object> model) {
-        return "bootstrap/pages/owners";
-    }
 }

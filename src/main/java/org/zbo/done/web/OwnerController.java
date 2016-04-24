@@ -17,6 +17,7 @@ package org.zbo.done.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +29,9 @@ import org.zbo.done.util.JsonUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author Juergen Hoeller
@@ -68,6 +71,43 @@ public class OwnerController {
         Owner owner = this.ownerService.findOwnerById(ownerId);
         this.response.setContentType("application/json;charset=UTF-8");
         this.response.getWriter().write((JsonUtil.toJson(owner)));
+    }
+    @RequestMapping(value = "bootstrap/owners", method = RequestMethod.GET)
+    public String get_owner(Map<String, Object> model) {
+        return "bootstrap/pages/owners";
+    }
+
+    @RequestMapping(value = "bootstrap/owners/new", method = RequestMethod.GET)
+    public ModelAndView new_owner() {
+        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails");
+        Owner owner= new Owner();
+        mav.addObject("owner", owner);
+        return mav;
+    }
+
+    @RequestMapping(value = "bootstrap/owners/{ownerId}", method = RequestMethod.GET)
+    public ModelAndView show_owner(@PathVariable("ownerId") int ownerId) {
+        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails");
+        mav.addObject(this.ownerService.findOwnerById(ownerId));
+        return mav;
+    }
+
+    @RequestMapping(value = "bootstrap/owners/{ownerId}", method = RequestMethod.POST)
+    public String edit_owner(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
+        owner.setId(ownerId);
+        this.ownerService.saveOwner(owner);
+        return "redirect:/bootstrap/owners";
+
+    }
+
+    @RequestMapping(value = "bootstrap/owners/new", method = RequestMethod.POST)
+    public String create_owner(@Valid Owner owner, BindingResult result) {
+        if (result.hasErrors()) {
+            return "bootstrap/pages/ownerDetails";
+        } else {
+            this.ownerService.saveOwner(owner);
+            return "redirect:/bootstrap/owners/" + owner.getId();
+        }
     }
 
     @RequestMapping("/owners.json")
