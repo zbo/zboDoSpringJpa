@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="zbo" tagdir="/WEB-INF/tags" %>
 
 <head>
 
@@ -19,7 +19,7 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <jsp:include page="csses.jsp"/>
-    <link rel="stylesheet" href="/petclinic/sb2/bower_components/ng-table/dist/ng-table.min.css">
+    <link rel="stylesheet" href="/zbo/sb2/bower_components/ng-table/dist/ng-table.min.css">
 
 </head>
 
@@ -56,8 +56,8 @@
 <!-- /#wrapper -->
 
 <jsp:include page="scripts.jsp"/>
-<script src="/petclinic/sb2/bower_components/ng-table/dist/ng-table.min.js"></script>
-<script src="/petclinic/sb2/petclinic/owner_app.js"></script>
+<script src="/zbo/sb2/bower_components/ng-table/dist/ng-table.min.js"></script>
+<script src="/zbo/sb2/zbo/owner_app.js"></script>
 </body>
 
 </html>

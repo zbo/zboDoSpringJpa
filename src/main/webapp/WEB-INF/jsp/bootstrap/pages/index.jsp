@@ -569,9 +569,9 @@
 
     <jsp:include page="scripts.jsp"/>
     <!-- Morris Charts JavaScript -->
-    <script src="/sb2/bower_components/raphael/raphael-min.js"></script>
-    <script src="/sb2/bower_components/morrisjs/morris.min.js"></script>
-    <script src="/sb2/js/morris-data.js"></script>
+    <script src="/zbo/sb2/bower_components/raphael/raphael-min.js"></script>
+    <script src="/zbo/sb2/bower_components/morrisjs/morris.min.js"></script>
+    <script src="/zbo/sb2/js/morris-data.js"></script>
 
 </body>
 

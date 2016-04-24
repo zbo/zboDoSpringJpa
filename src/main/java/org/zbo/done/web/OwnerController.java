@@ -21,6 +21,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.zbo.done.model.Owner;
+import org.zbo.done.model.Owners;
 import org.zbo.done.service.OwnerService;
 import org.zbo.done.util.JsonUtil;
 
@@ -68,16 +69,16 @@ public class OwnerController {
         this.response.setContentType("application/json;charset=UTF-8");
         this.response.getWriter().write((JsonUtil.toJson(owner)));
     }
-//
-//    @RequestMapping("/owners.json")
-//    public
-//    @ResponseBody
-//    void showResourcesOwnerList() throws IOException {
-//        Owners ownerList = new Owners();
-//        ownerList.getOwnerList().addAll(this.clinicService.findOwners());
-//        this.response.setContentType("application/json;charset=UTF-8");
-//        this.response.getWriter().write((JsonUtil.toJson(ownerList)));
-//    }
+
+    @RequestMapping("/owners.json")
+    public
+    @ResponseBody
+    void showResourcesOwnerList() throws IOException {
+        Owners ownerList = new Owners();
+        ownerList.getOwnerList().addAll(this.ownerService.findAll());
+        this.response.setContentType("application/json;charset=UTF-8");
+        this.response.getWriter().write((JsonUtil.toJson(ownerList)));
+    }
 //
 //    @RequestMapping("/owners_and_pets.json")
 //    public

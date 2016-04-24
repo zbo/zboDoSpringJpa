@@ -12,7 +12,7 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <jsp:include page="csses.jsp"/>
-    <link rel="stylesheet" href="/petclinic/sb2/bower_components/ng-table/dist/ng-table.min.css">
+    <link rel="stylesheet" href="/zbo/sb2/bower_components/ng-table/dist/ng-table.min.css">
 
 </head>
 
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="row" ng-controller="ownerCtrl">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-bar-chart-o fa-fw"></i>
@@ -70,8 +70,8 @@
 <!-- /#wrapper -->
 
 <jsp:include page="scripts.jsp"/>
-<script src="/petclinic/sb2/bower_components/ng-table/dist/ng-table.min.js"></script>
-<script src="/petclinic/sb2/petclinic/owner_app.js"></script>
+<script src="/zbo/sb2/bower_components/ng-table/dist/ng-table.min.js"></script>
+<script src="/zbo/sb2/zbo/owner_app.js"></script>
 </body>
 
 </html>
