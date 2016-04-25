@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
+
+    <rabbit:connection-factory id="connectionFactory" host="localhost" username="guest"
+                               password="guest" port="5672"/>
+
+    <rabbit:template id="amqpTemplate1" connection-factory="connectionFactory"
+                     exchange="myExchange"/>
+
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <rabbit:queue name="myQueueFoo"/>
+    <rabbit:queue name="myQueueCoo"/>
+
+    <!--路由设置 将队列绑定，属于topic类型-->
+    <rabbit:topic-exchange name="myExchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="myQueueFoo" pattern="foo.*"/>
+            <rabbit:binding queue="myQueueCoo" pattern="coo.*"/>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <!-- 监听类设置-->
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="foo" method="listen" queue-names="myQueueFoo"/>
+        <rabbit:listener ref="coo" method="listen" queue-names="myQueueCoo"/>
+    </rabbit:listener-container>
+
+    <bean id="foo" class="org.zbo.done.amqp.FooListenser"/>
+    <bean id="coo" class="org.zbo.done.amqp.CooListenser"/>
+</beans>
