@@ -14,7 +14,7 @@
 
     <!-- import the dataSource definition -->
     <import resource="datasource-config.xml"/>
-    <import resource="rabbitmq-config.xml"/>
+    <!--<import resource="rabbitmq-config.xml"/>-->
 
     <context:component-scan
             base-package="org.zbo.done.repository"/>
@@ -22,6 +22,8 @@
             base-package="org.zbo.done.service"/>
     <context:component-scan
             base-package="org.zbo.done.util"/>
+    <context:component-scan
+            base-package="org.zbo.done.amqp"/>
 
     <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/>
 

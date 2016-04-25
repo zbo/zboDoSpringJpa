@@ -22,4 +22,8 @@ public class RabbitMQTests {
     public void rabbitmq_send_receive_test() {
         template.convertAndSend("myExchange", "foo.bar", "Hello, world!");
     }
+    @Test
+    public void rabbitmq_send_receive_test2() {
+        template.convertAndSend("myExchange", "coo.bar", "Hello, world 2!");
+    }
 }
