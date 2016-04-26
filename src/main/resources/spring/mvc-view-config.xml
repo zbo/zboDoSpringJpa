@@ -13,18 +13,33 @@
     - When the media type is 'text/html', it will delegate to the InternalResourceViewResolver's JstlView,
     - otherwise to the BeanNameViewResolver.
     -->
-    <mvc:view-resolvers>
-        <mvc:content-negotiation use-not-acceptable="true">
-            <mvc:default-views>
-                <bean class="org.springframework.web.servlet.view.JstlView">
-                    <property name="url" value=""/>
+    <!--<mvc:view-resolvers>-->
+    <!--<mvc:content-negotiation use-not-acceptable="true">-->
+    <!--<mvc:default-views>-->
+    <!--<bean class="org.springframework.web.servlet.view.JstlView">-->
+    <!--<property name="url" value=""/>-->
+    <!--</bean>-->
+    <!--</mvc:default-views>-->
+    <!--</mvc:content-negotiation>-->
+
+    <!--&lt;!&ndash; Registering BeanNameViewResolver and InternalViewResolver &ndash;&gt;-->
+    <!--<mvc:bean-name/>-->
+    <!--<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp"/>-->
+    <!--</mvc:view-resolvers>-->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <!--<property name="suffix" value=".jsp"/>-->
                 </bean>
-            </mvc:default-views>
-        </mvc:content-negotiation>
-
-        <!-- Registering BeanNameViewResolver and InternalViewResolver -->
-        <mvc:bean-name/>
-        <mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp"/>
-    </mvc:view-resolvers>
-
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+            </list>
+        </property>
+    </bean>
 </beans>

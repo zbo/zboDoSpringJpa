@@ -35,6 +35,11 @@ public class PageController {
 
     @RequestMapping(value = "bootstrap/index", method = RequestMethod.GET)
     public String init_index(Map<String, Object> model) {
-        return "bootstrap/pages/index";
+        return "bootstrap/pages/index.jsp";
+    }
+
+    @RequestMapping(value = "bootstrap/login", method = RequestMethod.GET)
+    public String init_login(Map<String, Object> model) {
+        return "bootstrap/pages/login.html";
     }
 }

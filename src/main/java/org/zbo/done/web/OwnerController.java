@@ -74,12 +74,12 @@ public class OwnerController {
     }
     @RequestMapping(value = "bootstrap/owners", method = RequestMethod.GET)
     public String get_owner(Map<String, Object> model) {
-        return "bootstrap/pages/owners";
+        return "bootstrap/pages/owners.jsp";
     }
 
     @RequestMapping(value = "bootstrap/owners/new", method = RequestMethod.GET)
     public ModelAndView new_owner() {
-        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails");
+        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails.jsp");
         Owner owner= new Owner();
         mav.addObject("owner", owner);
         return mav;
@@ -87,7 +87,7 @@ public class OwnerController {
 
     @RequestMapping(value = "bootstrap/owners/{ownerId}", method = RequestMethod.GET)
     public ModelAndView show_owner(@PathVariable("ownerId") int ownerId) {
-        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails");
+        ModelAndView mav = new ModelAndView("bootstrap/pages/ownerDetails.jsp");
         mav.addObject(this.ownerService.findOwnerById(ownerId));
         return mav;
     }
@@ -96,14 +96,14 @@ public class OwnerController {
     public String edit_owner(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
         owner.setId(ownerId);
         this.ownerService.saveOwner(owner);
-        return "redirect:/bootstrap/owners";
+        return "redirect:/bootstrap/owners.jsp";
 
     }
 
     @RequestMapping(value = "bootstrap/owners/new", method = RequestMethod.POST)
     public String create_owner(@Valid Owner owner, BindingResult result) {
         if (result.hasErrors()) {
-            return "bootstrap/pages/ownerDetails";
+            return "bootstrap/pages/ownerDetails.jsp";
         } else {
             this.ownerService.saveOwner(owner);
             return "redirect:/bootstrap/owners/" + owner.getId();
