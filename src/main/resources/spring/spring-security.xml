@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+    <http pattern="/sb2/**" security="none"/>
+    <!--<http pattern="/bootstrap/login" security="none"/>-->
+
+    <http auto-config="true" use-expressions="false">
+        <csrf request-matcher-ref="" />
+        <intercept-url pattern="/bootstrap/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+        <form-login login-page='/bootstrap/login'
+                    login-processing-url="/bootstrap/login"
+                    default-target-url='/bootstrap/index'
+                    always-use-default-target='true'
+                    authentication-failure-url="/bootstrap/login?error"
+                    username-parameter="username"
+                    password-parameter="password"
+        />
+        <!--<form-login />-->
+        <logout logout-success-url="/bootstrap/login?logout"
+        />
+    </http>
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="jimi" password="pass" authorities="ROLE_USER, ROLE_ADMIN" />
+                <user name="bob" password="pass" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

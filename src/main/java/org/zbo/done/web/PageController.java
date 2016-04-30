@@ -2,10 +2,8 @@ package org.zbo.done.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +37,22 @@ public class PageController {
     }
 
     @RequestMapping(value = "bootstrap/login", method = RequestMethod.GET)
-    public String init_login(Map<String, Object> model) {
-        return "bootstrap/pages/login.html";
+    public ModelAndView init_login(
+                     @RequestParam(value = "error", required = false) String error,
+                     @RequestParam(value = "logout", required = false) String logout) {
+
+        ModelAndView model = new ModelAndView();
+        if (error != null) {
+                model.addObject("error", "Invalid username and password!");
+            }
+
+        if (logout != null) {
+                model.addObject("msg", "You've been logged out successfully.");
+            }
+        model.addObject("testobj","just for test");
+        model.setViewName("bootstrap/pages/login.jsp");
+
+        return model;
     }
+
 }

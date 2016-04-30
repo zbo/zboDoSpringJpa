@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ page session="false" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
+<%@ taglib prefix="zbo" tagdir="/WEB-INF/tags" %>
 
 <head>
 
@@ -42,10 +49,20 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="" method="post">
                             <fieldset>
+                                <c:if test="${param.error != null}">
+                                    <p>
+                                        Invalid username and password.
+                                    </p>
+                                </c:if>
+                                <c:if test="${param.logout != null}">
+                                    <p>
+                                        You have been logged out.
+                                    </p>
+                                </c:if>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Username" name="username" type="username" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -55,8 +72,15 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
+                                <label>
+                                    <c:out value="${testobj}"/>
+                                </label>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="bootstrap/index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <!--<a href="bootstrap/index.html" class="btn btn-lg btn-success btn-block">Login</a>-->
+                                <div class="form-actions">
+                                    <button type="submit" class="btn">Log in</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
