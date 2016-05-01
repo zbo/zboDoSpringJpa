@@ -21,7 +21,9 @@
                     password-parameter="password"
         />
         <!--<form-login />-->
-        <logout logout-success-url="/bootstrap/login?logout"
+        <logout logout-url="/bootstrap/logout"
+                logout-success-url="/bootstrap/login?logout"
+                invalidate-session="true"
         />
     </http>
     <authentication-manager>
