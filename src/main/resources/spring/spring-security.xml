@@ -12,6 +12,7 @@
         <csrf request-matcher-ref="" />
         <intercept-url pattern="/bootstrap/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER"/>
+        <remember-me key="zbo123" user-service-ref="userDetailsService"/>
         <form-login login-page='/bootstrap/login'
                     login-processing-url="/bootstrap/login"
                     default-target-url='/bootstrap/index'
@@ -26,12 +27,18 @@
                 invalidate-session="true"
         />
     </http>
-    <authentication-manager>
+    <authentication-manager erase-credentials="false">
         <authentication-provider>
-            <user-service>
+            <user-service id="userDetailsService">
                 <user name="jimi" password="pass" authorities="ROLE_USER, ROLE_ADMIN" />
                 <user name="bob" password="pass" authorities="ROLE_USER" />
             </user-service>
+        </authentication-provider>
+        <authentication-provider>
+            <jdbc-user-service id="jdbcUserDetailsService"
+                               data-source-ref="dataSource"
+                               users-by-username-query="select username,password, enabled from users where username=?"
+                               authorities-by-username-query="select username, role from user_roles where username =?  "/>
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

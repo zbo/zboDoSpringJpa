@@ -40,6 +40,7 @@ public abstract class AbstractTestBase {
         DBInitUtil dbInitUtil = context.getBean("dbInitUtil", DBInitUtil.class);
         populator.addScript(new ClassPathResource(dbInitUtil.getInitLocation()));
         populator.addScript(new ClassPathResource(dbInitUtil.getDataLocation()));
+        populator.addScript(new ClassPathResource(dbInitUtil.getSecurityLocation()));
 
         try {
             connection = DataSourceUtils.getConnection(dataSource);

@@ -35,6 +35,9 @@
         <property name="dataLocation">
             <value>${jdbc.dataLocation}</value>
         </property>
+        <property name="securityLocation">
+            <value>${jdbc.securityLocation}</value>
+        </property>
     </bean>
 
     <!-- enables scanning for @Transactional annotations -->

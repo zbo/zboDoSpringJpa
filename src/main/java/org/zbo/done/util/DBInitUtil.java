@@ -22,4 +22,14 @@ public class DBInitUtil {
 
     private String initLocation;
     private String dataLocation;
+
+    public String getSecurityLocation() {
+        return securityLocation;
+    }
+
+    public void setSecurityLocation(String securityLocation) {
+        this.securityLocation = securityLocation;
+    }
+
+    private String securityLocation;
 }
