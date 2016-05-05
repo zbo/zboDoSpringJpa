@@ -367,6 +367,7 @@
                         <goals>
                             <goal>clean</goal>
                             <goal>check</goal>
+                            <goal>cobertura</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -383,7 +384,8 @@
                 <version>${cobertura.version}</version>
                 <configuration>
                     <formats>
-                        <format>html</format>
+                        <!--<format>html</format>-->
+                        <format>xml</format>
                     </formats>
                     <check/>
                 </configuration>
