@@ -15,12 +15,12 @@
 
     <rabbit:annotation-driven/>
 
-    <bean id="rabbitListenerContainerFactory"
-          class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">
-        <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="concurrentConsumers" value="3"/>
-        <property name="maxConcurrentConsumers" value="10"/>
-    </bean>
+    <!--<bean id="rabbitListenerContainerFactory"-->
+          <!--class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">-->
+        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
+        <!--<property name="concurrentConsumers" value="3"/>-->
+        <!--<property name="maxConcurrentConsumers" value="10"/>-->
+    <!--</bean>-->
 
 
     <!--<rabbit:admin connection-factory="connectionFactory"/>-->
